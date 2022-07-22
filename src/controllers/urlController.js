@@ -85,7 +85,7 @@ const getUrl = async (req, res) => {
         const findUrl = await urlModel.findOne({ urlCode })
         //  SEARCHING FOR URL-CODE  IN  DATABASE IF NOT PRESENT IN CLOUD STORAGE
 
-        if (!findUrl) return res.status(400).send({ status: false, message: "Url not found!" })
+        if (!findUrl) return res.status(404).send({ status: false, message: "Url not found!" })
 
         await SET_ASYNC(`${urlCode}`, JSON.stringify(findUrl))           // STORING THE DATA IN CLOUD FOR FURTHER USE
 
