@@ -54,17 +54,17 @@ const createBook = async (req, res) => {
 const getBook = async (req, res) => {
     try {
          const bookId = req.params.bookId
-         
         let cache = await GET_ASYNC(`${bookId}`)
         cache = JSON.parse(cache)
-        if(cache > 5) return res.status(400).send("error")
-        if (cache.length ) return res.status(200).send(cache)
-       
+        // let count = 0
+    
+        if ( cache ) return res.status(200).send(cache)
+        
+
         const findBook = await bookModel.findOne({ _id:bookId })
+        // if(findBook) count ++
+        // we can set the count  in Set Async and in get Async if the count is more than 5 than  show error
        
-
-        // if (!findUrl) return res.status(404).send({ status: false, message: "Url not found!" })
-
         await SET_ASYNC(`${bookId}`, JSON.stringify(findBook))           // STORING THE DATA IN CLOUD FOR FURTHER USE
 
         return res.status(200).send(findBook)
