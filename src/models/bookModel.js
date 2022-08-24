@@ -8,26 +8,23 @@ const mongoose = require("mongoose");
 //////////////////////////////        BOOK       SCHEMA      /////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const urlSchema = new mongoose.Schema(
+const bookSchema = new mongoose.Schema(
     {
-        urlCode: {
-            type: String,
-            required: true,
-            lowercase: true,
-            unique: true,
-            trim: true
-        } ,
-
-        longUrl: {
+        name: {
             type: String,
             required: true,
             trim: true
         } ,
 
-        shortUrl: {
+        author: {
             type: String,
             required: true,
-            unique: true,
+            trim: true
+        } ,
+
+        category: {
+            type: String,
+            required: true,
             trim: true
         }
 }, {timestamps:true})
@@ -36,4 +33,4 @@ const urlSchema = new mongoose.Schema(
 //////////////////////////////       MODULES    EXPORTED     /////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-module.exports = mongoose.model("url", urlSchema)
+module.exports = mongoose.model("book", bookSchema)
